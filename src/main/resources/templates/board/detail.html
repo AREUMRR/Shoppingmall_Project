@@ -1,0 +1,163 @@
+
+<!--
+    파일명 : board/detail
+    작성자 : 정아름
+    작성일 : 24.02.22
+    수정사항 : 글씨체 적용함
+              틀 수정해야 함, 배경 및 이미지, 아이콘 등 확인!
+-->
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block layout:fragment="head">
+        <meta charset="UTF-8">
+        <!-- bootstrap -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+        <!-- google icon -->
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+        <!-- summernote (jQuery) -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <!-- summernote (css/js) -->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+        <style>
+            body {
+                font-family: Verdana, sans-serif;
+                font-size: 15px;
+            }
+
+            h2 {
+                font-family: "Nanum Pen Script", cursive;
+                font-weight: 400;
+                font-size: 50px;
+                font-style: normal;
+            }
+        </style>
+    </th:block>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <!-- 여백 -->
+        <div class="col-sm-3"></div>
+        <!-- 고객센터 게시글 상세보기 -->
+        <div class="col-sm-6">
+            <div class="container mt-5 mb-5">
+                <h2>고객센터 게시글 상세보기</h2><br>
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            번호 : <span th:text="${data.boardId}"></span>
+                        </p>
+                        <p>
+                            제목 : <span th:text="${data.boardSubject}"></span>
+                        </p>
+                        <p>
+                            내용 :
+                        </p>
+                        <div id="summernoteContent"
+                             th:text="${data.boardContent}" readonly></div>
+                        <p>
+                            사진파일 : <span th:text="${data.boardImage}"></span>
+                        </p>
+                        <p>
+                            작성자 : <span th:text="${data.boardWriter}"></span>
+                        </p>
+                        <p>
+                            수정일 : <span th:text="${#temporals.format(data.modDate, 'yyyy-MM-dd')}"></span></p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-outline-warning"
+                                th:onclick="|location.href='@{/board/update(id=${data.boardId})}'|"
+                                sec:authorize="hasAnyRole('USER', 'ADMIN')">
+                            게시글 수정
+                        </button>
+                        <button type="button" class="btn btn-outline-warning float-end"
+                                th:onclick="|location.href='@{/board/delete(id=${data.boardId})}'|"
+                                sec:authorize="hasAnyRole('USER', 'ADMIN')">
+                            게시글 삭제
+                        </button>
+                    </div>
+                </div>
+                <!--댓글 입력-->
+                <form th:action="@{/boardcmt/insert(id=${data.boardId})}" method="post">
+                    <input type="hidden" name="id" th:value="${data.boardId}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mt-3 mb-3">
+                                <textarea class="form-control" rows="5" name="boardcmtBody"></textarea>
+                                <label for="boardcmtWriter"></label>
+                                <input type="text" name="boardcmtWriter" id="boardcmtWriter" th:value="${member.memberName}" readonly>
+                            </div>
+                            <button type="submit" class="btn btn-outline-warning"
+                                    sec:authorize="hasAnyRole('USER', 'ADMIN')">
+                                댓글등록
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!--댓글 끝-->
+                <div th:each="boardcmt:${list}">
+                    <div class="card">
+                        <div class="card-footer">
+                            <p th:text="${boardcmt.boardcmtBody}">댓글 ▶</p>
+                            <p th:text="${boardcmt.boardcmtWriter}">작성자</p>
+                            <p th:text="${#temporals.format(data.modDate, 'yyyy-MM-dd')}">등록일</p>
+                            <a th:href="@{/boardcmt/update(id=${data.boardId}, cid=${boardcmt.boardcmtId})}"
+                               sec:authorize="hasAnyRole('USER', 'ADMIN')">
+                                수정</a>
+                            <a th:href="@{/boardcmt/delete(id=${data.boardId}, cid=${boardcmt.boardcmtId})}"
+                               sec:authorize="hasAnyRole('USER', 'ADMIN')">
+                                삭제</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 여백 -->
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+</div>
+<th:block layout:fragment="script">
+    <!-- summernote -->
+    <script>
+        $(document).ready(function () {
+            // 빈 div 요소에 Summernote를 초기화합니다.
+            $('#summernoteContent').summernote({
+                height: 300,                 // 에디터 높이
+                minHeight: null,             // 최소 높이
+                maxHeight: null,             // 최대 높이
+                focus: true,                 // 에디터 로딩후 포커스를 맞출지 여부
+                lang: "ko-KR",			     // 한글 설정
+                disableResizeEditor: true,   // 더 나은 외관을 위해 크기 조정 비활성화
+                toolbar: [] // 툴바를 비워서 숨깁니다.
+            });
+
+            //$('#summernoteContent').summernote('disable');
+            $("#summernoteContent").summernote("destroy");
+        });
+    </script>
+
+    <script th:inline="javascript">
+        /* 작업 성공했을 때 성공메세지 창을 출력 */
+        var successMessage = /*[[ ${successMessage} ]]*/ null;
+        if (successMessage) {
+            alert(successMessage);
+        }
+    </script>
+</th:block>
+</body>
+</html>

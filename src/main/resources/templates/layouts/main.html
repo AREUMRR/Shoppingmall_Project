@@ -1,0 +1,33 @@
+<!--
+파일명 : layouts/main
+작성자 : 정아름
+작성일 : 24.02.21
+수정사항 : 글씨체 적용
+-->
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>SalPick</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    head로 선언된 조각을 이곳에 추가  -->
+    <th:block layout:fragment="head"></th:block>
+    <!--    script로 선언된 조각을 이곳에 추가 -->
+    <th:block layout:fragment="script"></th:block>
+    <!--    css로 선언된 조각을 이곳에 추가 -->
+    <th:block layout:fragment="css"></th:block>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/header::header}"></div>
+<div layout:fragment="content"></div>
+<div th:replace="~{fragments/footer::footer}"></div>
+</body>
+</html>
