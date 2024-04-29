@@ -53,7 +53,6 @@ public class ProductController {
         ProductDTO productDTO = new ProductDTO();
         model.addAttribute("data", productDTO);
 
-
         return "product/insert";
     }
 
@@ -68,7 +67,6 @@ public class ProductController {
         }
 
         productService.productInsert(productDTO, imgFile);
-
 
         return "redirect:/product/list";
     }

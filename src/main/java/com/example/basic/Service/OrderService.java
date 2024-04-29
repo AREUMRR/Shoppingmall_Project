@@ -1,6 +1,5 @@
 package com.example.basic.Service;
 
-import com.example.basic.DTO.CartItemDTO;
 import com.example.basic.DTO.OrderDTO;
 import com.example.basic.DTO.OrderItemDTO;
 import com.example.basic.Entity.*;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

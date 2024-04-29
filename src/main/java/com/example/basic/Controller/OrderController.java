@@ -1,11 +1,11 @@
 
 /*
     설명 : 상품관리의 목록, 수정, 삭제, 조회로 이동하는 페이지 영역
-    입력값 : /order/list, /order/insert, /order/update, /order/delete, /order/detail
-    출력값 : order/list, order/insert, order/update, order/detail
-    작성일 : 24.02.22
+    입력값 : /order/list, /order/insert, /order/delete, /order/detail
+    출력값 : order/list, order/insert, order/detail
+    작성일 : 24.04.12
     작성자 : 정아름
-    수정사항 : 상품관리의 전체 목록 페이지는 list 처리 하기로 함
+    수정사항 :
  */
 
 package com.example.basic.Controller;
@@ -102,10 +102,10 @@ public class OrderController {
         return "redirect:/order/detail";
     }
 
-    //주문
+    //주문 페이지
     @GetMapping("/order/detail")
     public String detailForm(@AuthenticationPrincipal User user, Model model,
-                             Integer id, RedirectAttributes redirectAttributes) throws NullPointerException {
+                             Integer id) throws NullPointerException {
         //회원 정보가 있으면
         //로그인 정보로 회원 조회
         MemberDTO memberDTO = memberService.detail(user.getUsername());
@@ -133,6 +133,7 @@ public class OrderController {
         }
     }
 
+    //주문 페이지(주문 상태 체크)
     @PostMapping("/order/detail")
     public String detailProc(Integer mid, Integer id, Integer oid,
                              @AuthenticationPrincipal User user, Model model,

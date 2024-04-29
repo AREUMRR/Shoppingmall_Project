@@ -2,12 +2,11 @@
 /*
     작성자 : 정아름
     작성일 : 24.02.21
-    수정사항 : 리뷰 댓글이랑 게시판 댓글 repository & service 다시 확인해라!!!!!!!!!!
+    수정사항 : 리뷰 댓글이랑 게시판 댓글 repository & service 확인완료
  */
 
 package com.example.basic.Service;
 
-import com.example.basic.DTO.BoardDTO;
 import com.example.basic.DTO.BoardcmtDTO;
 import com.example.basic.Entity.BoardEntity;
 import com.example.basic.Entity.BoardcmtEntity;
@@ -18,11 +17,9 @@ import com.example.basic.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

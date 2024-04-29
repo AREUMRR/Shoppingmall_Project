@@ -12,14 +12,14 @@ import java.util.List;
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItemEntity, Integer> {
 
-    //장바구니 상품 찾기
+    //주문 상품 찾기
     @Query(value = "SELECT w FROM OrderItemEntity w WHERE w.orderEntity.orderId = :orderId")
     List<OrderItemEntity> findAllByOrderId(@Param("orderId") Integer orderId);
 
     @Query(value = "SELECT w FROM OrderItemEntity w WHERE w.orderEntity.orderId = :orderId AND w.productEntity.productId = :productId")
     OrderItemEntity findByOrderIdAndProductId(Integer orderId, Integer productId);
 
-    //장바구니 상품 찾기
+    //주문 상품 찾기
     @Query(value = "SELECT w FROM OrderItemEntity w WHERE w.orderEntity.orderId = :orderId")
     OrderItemEntity findByOrderId(Integer orderId);
 

@@ -13,12 +13,10 @@ package com.example.basic.Controller;
 import com.example.basic.DTO.BoardDTO;
 import com.example.basic.DTO.BoardcmtDTO;
 import com.example.basic.DTO.MemberDTO;
-import com.example.basic.Entity.BoardEntity;
 import com.example.basic.Service.BoardService;
 import com.example.basic.Service.BoardcmtService;
 import com.example.basic.Service.MemberService;
 import com.example.basic.Util.PaginationUtil;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,9 +24,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +32,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor

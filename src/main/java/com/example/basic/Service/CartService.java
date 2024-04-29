@@ -2,13 +2,11 @@ package com.example.basic.Service;
 
 import com.example.basic.DTO.CartDTO;
 import com.example.basic.DTO.CartItemDTO;
-import com.example.basic.DTO.ProductDTO;
 import com.example.basic.Entity.*;
 import com.example.basic.Repository.CartItemRepository;
 import com.example.basic.Repository.CartRepository;
 import com.example.basic.Repository.MemberRepository;
 import com.example.basic.Repository.ProductRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

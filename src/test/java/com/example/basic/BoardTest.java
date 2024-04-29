@@ -1,6 +1,7 @@
 package com.example.basic;
 
 import com.example.basic.Entity.BoardEntity;
+import com.example.basic.Entity.MemberEntity;
 import com.example.basic.Entity.NoticeEntity;
 import com.example.basic.Entity.ReviewEntity;
 import com.example.basic.Repository.BoardRepository;
@@ -18,11 +19,14 @@ public class BoardTest {
 
     @Test
     public void boardInsertTest() {
-        for(int i=1; i<=100; i++) {
+        for(int i=1; i<=10; i++) {
             BoardEntity boardEntity = BoardEntity.builder()
-                    .boardSubject("게시글Test"+i)
-                    .boardContent("연습용 게시글입니다.")
-                    .boardWriter("김가가")
+                    .boardSubject("Test "+i+" 입니다.")
+                    .boardContent("Test 입니다.")
+                    .memberEntity(MemberEntity.builder()
+                            .memberId(2)
+                            .build())
+                    .boardWriter("김나나")
                     .build();
             boardRepository.save(boardEntity);
         }
@@ -33,12 +37,15 @@ public class BoardTest {
 
     @Test
     public void setReviewRepository() {
-        for (int i=1; i<=100; i++) {
+        for (int i=1; i<=10; i++) {
             ReviewEntity reviewEntity = ReviewEntity.builder()
-                    .reviewSubject("구매후기Test"+i)
-                    .reviewContent("좋아요")
+                    .reviewSubject("Test "+i+" 입니다.")
+                    .reviewContent("Test 입니다.")
                     .reviewCount(100)
                     .reviewScore(5)
+                    .memberEntity(MemberEntity.builder()
+                            .memberId(2)
+                            .build())
                     .reviewWriter("김나나")
                     .build();
             reviewRepository.save(reviewEntity);
@@ -52,8 +59,8 @@ public class BoardTest {
     public void setNoticeRepository() {
         for (int i=1; i<=20; i++) {
             NoticeEntity noticeEntity = NoticeEntity.builder()
-                    .noticeSubject("공지사항Test"+i)
-                    .noticeContent("공지사항 Test 입니다.")
+                    .noticeSubject("공지사항 Test "+i+" 입니다.")
+                    .noticeContent("Test 입니다.")
                     .noticeWriter("김라라")
                     .noticeCount(100)
                     .build();

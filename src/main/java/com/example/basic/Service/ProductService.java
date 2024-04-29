@@ -7,10 +7,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -119,6 +115,7 @@ public class ProductService {
             productEntities = productRepository.findAll();
         }
 
+        //신상품 조회
         if (type.equals("n")) {
             productEntities = productRepository.findProductEntitiesBy();
         }

@@ -2,7 +2,7 @@ package com.example.basic.Entity;
 
 /*
     작성자 : 정아름
-    작성일 : 24.02.21
+    작성일 : 24.04.12
     수정사항 :
  */
 

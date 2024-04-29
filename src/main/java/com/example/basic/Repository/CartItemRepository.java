@@ -1,7 +1,6 @@
 package com.example.basic.Repository;
 
 import com.example.basic.Entity.CartItemEntity;
-import com.example.basic.Entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

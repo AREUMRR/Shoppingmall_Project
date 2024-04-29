@@ -3,7 +3,7 @@ package com.example.basic.Entity;
 /*
     작성자 : 정아름
     작성일 : 24.02.21
-    수정사항 : 테이블 생성되고 테스트까지 완료했는데 왜 오류 떠있는지 모르겠음
+    수정사항 : 테이블 생성되고 테스트까지 완료했는데 왜 오류가 떴지?
  */
 
 import jakarta.persistence.*;

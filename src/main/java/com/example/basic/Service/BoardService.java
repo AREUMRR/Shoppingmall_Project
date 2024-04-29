@@ -4,7 +4,6 @@ import com.example.basic.DTO.BoardDTO;
 import com.example.basic.Entity.BoardEntity;
 import com.example.basic.Entity.BoardcmtEntity;
 import com.example.basic.Entity.MemberEntity;
-import com.example.basic.Entity.ReviewEntity;
 import com.example.basic.Repository.BoardRepository;
 import com.example.basic.Repository.BoardcmtRepository;
 import com.example.basic.Repository.MemberRepository;
