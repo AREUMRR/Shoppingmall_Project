@@ -1,6 +1,5 @@
 package com.example.basic.Service;
 
-import com.example.basic.DTO.MemberDTO;
 import com.example.basic.Entity.MemberEntity;
 import com.example.basic.Repository.LoginRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +8,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LoginService implements UserDetailsService {
     private final LoginRepository loginRepository;
-    private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
 
     //UsernameNotFoundException-사용자가 존재하지 않으면 예외발생(오류)

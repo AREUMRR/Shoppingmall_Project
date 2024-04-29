@@ -9,7 +9,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,14 +32,14 @@ public class MailService {
         };
 
         //임시 비밀번호 변수
-        String password = "";
+        StringBuilder password = new StringBuilder();
 
         //랜덤으로 값을 6개를 뽑아 조합
         for (int i = 0; i < 6; i++) {
             int random = (int) (strings.length * Math.random());
-            password += strings[random];
+            password.append(strings[random]);
         }
-        return password;
+        return password.toString();
     }
 
     //html 메일 전송
