@@ -28,8 +28,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequiredArgsConstructor
 public class LoginController {
     private final LoginService loginService;
-    private final MemberService memberService;
-    private final PasswordEncoder passwordEncoder;
 
     //로그인 페이지
     @GetMapping("/login")

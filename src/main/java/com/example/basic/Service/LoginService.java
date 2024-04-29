@@ -60,19 +60,4 @@ public class LoginService implements UserDetailsService {
 
         return result;
     }
-
-    //로그인 처리
-    public MemberDTO login(String memberEmail) {
-        //회원 이메일과 비밀번호를 조회
-        Optional<MemberEntity> memberEntity = loginRepository.findByMemberEmail(
-                memberEmail);
-        //조회한 데이터가 있으면
-        if (memberEntity.isPresent()) {
-            MemberDTO memberDTO = modelMapper.map(memberEntity, MemberDTO.class);
-            return memberDTO;
-        } else {
-            return null;
-        }
-    }
-
 }

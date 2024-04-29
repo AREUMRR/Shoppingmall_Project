@@ -63,26 +63,7 @@ public class MailService {
             log.info("FAIL");
             throw new RuntimeException(e);
         }
-
-        //MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-
-//        try {
-//
-//            MimeMessage message = new MimeMessageHelper(mimeMessage, false, "UTF-8").getMimeMessage();
-//            //메일 제목
-//            message.setSubject(emailDTO.getTitle());
-//            //수신자 메일 주소
-//            message.setText(emailDTO.getEmail());
-//            //메일 내용
-//            message.setText(emailDTO.getContent());
-//
-//            javaMailSender.send(message);
-//        } catch (MessagingException e) {
-//            log.info("FAIL");
-//            throw new RuntimeException(e);
-//        }
     }
-
 
     //비밀번호 찾기
     public Map<String, String> findPassword(String memberEmail, String memberName) {
@@ -105,12 +86,8 @@ public class MailService {
     public void memberCheck(String memberEmail) {
         Optional<MemberEntity> member = loginRepository.findByMemberEmail(memberEmail);
 
-        if (member == null && !member.get().getMemberEmail().equals(memberEmail)) {
+        if (member.isEmpty() && !member.get().getMemberEmail().equals(memberEmail)) {
             throw new UsernameNotFoundException("존재하지 않는 회원입니다.");
-//        } else {
-//            sendEmail(memberEmail);
-//        }
-
         }
     }
 }

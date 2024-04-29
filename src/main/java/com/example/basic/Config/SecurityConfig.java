@@ -57,9 +57,9 @@ public class SecurityConfig {
             auth.requestMatchers("/board/insert").hasAnyRole("USER", "ADMIN");
             auth.requestMatchers("/board/update").hasAnyRole("USER", "ADMIN");
             auth.requestMatchers("/board/delete").hasAnyRole("USER", "ADMIN");
-            auth.requestMatchers("/boardcmt/insert").permitAll();
-            auth.requestMatchers("/boardcmt/update").permitAll();
-            auth.requestMatchers("/boardcmt/delete").permitAll();
+            auth.requestMatchers("/boardcmt/insert").hasAnyRole("USER", "ADMIN");
+            auth.requestMatchers("/boardcmt/update").hasAnyRole("USER", "ADMIN");
+            auth.requestMatchers("/boardcmt/delete").hasAnyRole("USER", "ADMIN");
             auth.requestMatchers("/info/**").permitAll();
             auth.requestMatchers("/notice/list").permitAll();
             auth.requestMatchers("/notice/detail").permitAll();
@@ -78,9 +78,9 @@ public class SecurityConfig {
             auth.requestMatchers("/review/insert").hasAnyRole("USER", "ADMIN");
             auth.requestMatchers("/review/update").hasAnyRole("USER", "ADMIN");
             auth.requestMatchers("/review/delete").hasAnyRole("USER", "ADMIN");
-            auth.requestMatchers("/reviewcmt/insert").permitAll();
-            auth.requestMatchers("/reviewcmt/update").permitAll();
-            auth.requestMatchers("/reviewcmt/delete").permitAll();
+            auth.requestMatchers("/reviewcmt/insert").hasAnyRole("USER", "ADMIN");
+            auth.requestMatchers("/reviewcmt/update").hasAnyRole("USER", "ADMIN");
+            auth.requestMatchers("/reviewcmt/delete").hasAnyRole("USER", "ADMIN");
             auth.requestMatchers("/login","/logout","/find/email","/find/password").permitAll();
             auth.requestMatchers("/css/**", "/js/**", "/image/**", "/images/**").permitAll();
         });

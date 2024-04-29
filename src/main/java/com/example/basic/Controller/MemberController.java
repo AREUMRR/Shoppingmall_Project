@@ -43,7 +43,6 @@ public class MemberController {
 
     private final ReviewService reviewService;
 
-
     //전체 조회
     @GetMapping("/member/list")
     public String listForm(@PageableDefault(page = 1) Pageable pageable,

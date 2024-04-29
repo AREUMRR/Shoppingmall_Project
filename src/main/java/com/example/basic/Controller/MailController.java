@@ -9,11 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,8 +16,6 @@ public class MailController {
     private final MailService mailService;
     private final MemberService memberService;
 
-    //java mail sender 로 변경
-    //테스트 해야 됨!!!!!!!!!!!!
     //비밀번호 찾기
     @GetMapping("/find/password")
     public String findPassword() {
@@ -59,15 +52,4 @@ public class MailController {
         //조회하는 값이 있으면 비밀번호 확인 페이지로 이동
         return "login/resultpassword";
     }
-
-//    @PostMapping("/check-duplicate-email")
-//    public boolean checkDuplicateEmail(String email) {
-//        MemberDTO memberDTO = memberService.detail(email);
-//        if (memberDTO == null) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-
 }
